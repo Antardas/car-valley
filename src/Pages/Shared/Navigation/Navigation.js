@@ -6,8 +6,10 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-
+import logo from '../../../images/120x60logo.png'
+import { Link } from 'react-router-dom'
 const Navigation = () => {
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -22,12 +24,17 @@ const Navigation = () => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Car Planet
+                        <img src={logo} alt="" />
+                    </Typography>
+                    <Typography variant="button" color='white' component="div">
+                        <Link to="/allProducts" style={{
+                            color: 'white'
+                        }}>Explore</Link>
                     </Typography>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
-        </Box>
+        </Box >
     );
 };
 
