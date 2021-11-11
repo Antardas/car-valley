@@ -25,7 +25,7 @@ const useFirebase = () => {
     }
 
     // Register with email & password
-    const registerWithEmail = (email, password, name) => {
+    const registerWithEmail = (email, password, name, redirect_url, history) => {
         console.log(name, email, password, 'fero register');
         setIsLoading(true)
         createUserWithEmailAndPassword (auth, email, password)
@@ -48,7 +48,7 @@ const useFirebase = () => {
                     // ...
                 });
                 setAuthError('');
-                history.push('/home')
+                history.replace(redirect_url)
             }).catch((error) => {
                 console.log('found error')
                 setAuthError(error.message);

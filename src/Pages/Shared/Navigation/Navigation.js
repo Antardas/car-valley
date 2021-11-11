@@ -12,7 +12,7 @@ import useAuth from '../../../Hooks/useAuth';
 
 const Navigation = () => {
     const { singInGoogle, user, logOut } = useAuth();
-
+console.log(user)
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -29,15 +29,10 @@ const Navigation = () => {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         <img src={logo} alt="" />
                     </Typography>
-                    <Typography variant="button" sx={{ mx: '1rem' }} color='white' component="div">
-                        <Link to="/allProducts" style={{
-                            color: 'white'
-                        }}>Explore</Link>
-                    </Typography>
                     {
                         user?.email ? <Box style={{ display: 'flex', alignItems: 'center' }}>
-                            <Typography variant="button" color='white' component="div">
-                                {user?.name}
+                            <Typography variant="button" sx={{ mx: '0.4rem' }} color='white' component="div">
+                                {user?.displayName}
                             </Typography>
                             <Typography variant="button" color='white' component="div">
                                 <Link to="/dashboard" style={{
@@ -51,6 +46,11 @@ const Navigation = () => {
                             }}>Login</Link>
                         </Typography>
                     }
+                    <Typography variant="button" sx={{ mx: '0.3rem' }} color='white' component="div">
+                        <Link to="/allProducts" style={{
+                            color: 'white'
+                        }}>Explore</Link>
+                    </Typography>
 
                 </Toolbar>
             </AppBar>

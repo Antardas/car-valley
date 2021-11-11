@@ -43,38 +43,40 @@ const Footer = () => {
                         </Box>
                     </Grid>
                     <Grid color={grey[400]} item xs={12} sm={6} md={8} className='footer-li'>
-                        <Grid item xs={12} md={4}>
-                            <Typography variant="h6" color={grey[50]}>Quick Links</Typography>
-                            <ul>
-                                <li>Support</li>
-                                <li>Helpline</li>
-                                <li>Affilates</li>
-                                <li>Live Support</li>
-                                <li>Customer Care</li>
-                                <li>FAQs</li>
-                            </ul>
-                        </Grid>
-                        <Grid item xs={12} md={4}>
-                            <Typography variant="h6" color={grey[50]}>Informations</Typography>
-                            <ul>
-                                <li>About Us</li>
-                                <li>Customer Services</li>
-                                <li>Privacy and Policy</li>
-                                <li>Order & Returns</li>
-                                <li>Shipping Policy</li>
-                                <li>Our Sitemap</li>
-                            </ul>
-                        </Grid>
-                        <Grid item xs={12} md={4}>
-                            <Typography variant="h6" color={grey[50]}>My Account</Typography>
-                            <ul>
-                                <li>Balance</li>
-                                <li>Checkout</li>
-                                <li>Cards</li>
-                                <li>Track Order</li>
-                                <li>Terms</li>
-                                <li>Site Policy</li>
-                            </ul>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} md={4}>
+                                <Typography variant="h6" color={grey[50]}>Quick Links</Typography>
+                                <ul>
+                                    <li>Support</li>
+                                    <li>Helpline</li>
+                                    <li>Affilates</li>
+                                    <li>Live Support</li>
+                                    <li>Customer Care</li>
+                                    <li>FAQs</li>
+                                </ul>
+                            </Grid>
+                            <Grid item xs={12} md={4}>
+                                <Typography variant="h6" color={grey[50]}>Informations</Typography>
+                                <ul>
+                                    <li>About Us</li>
+                                    <li>Customer Services</li>
+                                    <li>Privacy and Policy</li>
+                                    <li>Order & Returns</li>
+                                    <li>Shipping Policy</li>
+                                    <li>Our Sitemap</li>
+                                </ul>
+                            </Grid>
+                            <Grid item xs={12} md={4}>
+                                <Typography variant="h6" color={grey[50]}>My Account</Typography>
+                                <ul>
+                                    <li>Balance</li>
+                                    <li>Checkout</li>
+                                    <li>Cards</li>
+                                    <li>Track Order</li>
+                                    <li>Terms</li>
+                                    <li>Site Policy</li>
+                                </ul>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>

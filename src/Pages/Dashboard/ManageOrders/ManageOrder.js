@@ -11,16 +11,16 @@ import useAuth from '../../../Hooks/useAuth';
 
 
 
-const MyOrders = () => {
+const ManageOrders = () => {
     const [orders, setOrders] = useState([]);
     const { user } = useAuth();
     useEffect(() => {
 
-        const url = `http://localhost:5000/orders/${user?.email}`;
+        const url = `http://localhost:5000/orders`;
         fetch(url)
             .then(res => res.json())
             .then(data => setOrders(data));
-    }, [user?.email]);
+    }, []);
     return (
         <div>
             <TableContainer component={Paper}>
@@ -60,4 +60,4 @@ const MyOrders = () => {
     );
 };
 
-export default MyOrders;
+export default ManageOrders;

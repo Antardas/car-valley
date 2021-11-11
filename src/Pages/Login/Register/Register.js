@@ -10,9 +10,9 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 const Register = () => {
     const { singInGoogle, registerWithEmail } = useAuth();
-    const history = useHistory();
     const location = useLocation();
     const redirect_url = location.state?.from || '/home'
+    const history = useHistory();
     console.log(location);
     const [singnUPData, setSignUpData] = useState({});
     const [success, setSuccess] = useState(true);
@@ -23,15 +23,22 @@ const Register = () => {
         newLoginData[field] = value;
         setSignUpData(newLoginData);
     }
+    const vanishAlert = () => {
+        setTimeout(() => {
+            setSuccess(true);
+        }, 3000);
+    }
     const handleSubmit = (e) => {
         console.log(singnUPData)
 
         console.log('calling handleSubmit')
-/*         if (singnUPData.password !== singnUPData.password2) {
+        if (singnUPData.password !== singnUPData.password2) {
+            vanishAlert()
             setSuccess(false);
+            e.preventDefault();
             return
-        } */
-        registerWithEmail(singnUPData.email, singnUPData.password, singnUPData.name);
+        }
+        registerWithEmail(singnUPData.email, singnUPData.password, singnUPData.name, redirect_url, history);
         e.preventDefault();
     }
 
@@ -57,7 +64,7 @@ const Register = () => {
                         <Typography color="white" sx={{ pt: '3rem' }} style={{ textAlign: 'left', }} variant="h3" component='h3'>
                             Let's Get Started
                         </Typography>
-                        <Typography color={grey[400]} sx={{ textAlign: 'left', pt: '2rem'}} variant="body2" component='p'>
+                        <Typography color={grey[400]} sx={{ textAlign: 'left', pt: '2rem' }} variant="body2" component='p'>
                             Login Your Existing Account
                         </Typography>
                         <form onSubmit={handleSubmit} sx={{ mt: '5rem', display: 'block' }}>
@@ -120,7 +127,7 @@ const Register = () => {
                             <Button sx={{ my: '2rem' }} type='submit' variant="contained">Register</Button>
                         </form>
                         <Button onClick={singInGoogle}> <img style={{ width: '30px' }} src={googleSVG} alt="" /></Button>
-                        <Typography color='white'>Already Hava An Account? <Link to={{pathname: '/login', state:{from: redirect_url}}}><Button>Login</Button></Link> </Typography>
+                        <Typography color='white'>Already Hava An Account? <Link to={{ pathname: '/login', state: { from: redirect_url } }}><Button>Login</Button></Link> </Typography>
                     </Box>
                 </Grid>
             </Grid>

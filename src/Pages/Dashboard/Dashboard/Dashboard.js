@@ -31,6 +31,7 @@ import AddReview from '../AddReview/AddReview';
 import AddProduct from '../AddProduct/AddProduct';
 import { Button } from '@mui/material';
 import useAuth from '../../../Hooks/useAuth';
+import ManageOrders from '../ManageOrders/ManageOrder';
 const drawerWidth = 200;
 
 function Dashboard(props) {
@@ -165,7 +166,7 @@ function Dashboard(props) {
                         <AddProduct />
                     </Route>
                     <Route path={`${path}/manageOrder`}>
-                        <AddProduct />
+                        <ManageOrders />
                     </Route>
                 </Switch>
                 <h3>Your Content Here</h3>

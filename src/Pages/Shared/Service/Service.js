@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 const Service = ({ product }) => {
     console.log(product);
-    const { img, title, description } = product;
+    const { img, title, description, _id } = product;
     return (
         <Grid item xs={12} sx={{ mx: 'auto' }} sm={6} md={4} lg={3}>
         <Box style={{ display: 'flex', justifyContent: 'center' }}>
@@ -27,11 +27,11 @@ const Service = ({ product }) => {
                         {title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        {description}
+                        {description.split(' ').slice(0, 10).join(' ') + '...' }
                     </Typography>
                 </CardContent>
                 <CardActions>
-                        <Link style={{display: 'inline-block', margin: '0 auto'}}to='/purchase'><Button size="small" variant='contained' sx={{ mx: 'auto' }}>Buy Now</Button></Link>
+                        <Link style={{display: 'inline-block', margin: '0 auto'}} to={`/purchase/${_id}`}><Button size="small" variant='contained' sx={{ mx: 'auto' }}>Buy Now</Button></Link>
                 </CardActions>
             </Card>
             </Box>
