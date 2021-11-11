@@ -9,6 +9,7 @@ import Services from './Pages/Shared/Services/Services';
 import AuthProvider from './Context/AuthProvider/AuthProvider';
 import Login from './Pages/Login/Login/Login';
 import Register from './Pages/Login/Register/Register';
+import Purchase from './Pages/Purchase/Purchase';
 function App() {
   return (
     <div className="App">
@@ -29,6 +30,9 @@ function App() {
             </Route>
             <Route path="/register">
               <Register></Register>
+            </Route>
+            <Route path="/purchase">
+              <Purchase></Purchase>
             </Route>
           </Switch>
         </Router>

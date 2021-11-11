@@ -6,32 +6,36 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
+import { Grid } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-const Service = (props) => {
-    console.log(props);
+const Service = ({ product }) => {
+    console.log(product);
+    const { img, title, description } = product;
     return (
+        <Grid item xs={12} sx={{ mx: 'auto' }} sm={6} md={4} lg={3}>
         <Box style={{ display: 'flex', justifyContent: 'center' }}>
             <Card sx={{ maxWidth: 305 }}>
                 <CardMedia
                     component="img"
                     height="140"
-                    image="https://cdn.al-ain.com/images/2019/5/10/147-034017-ferrari-hybrid-supercar-confirmed_700x400.png"
+                    image={img}
                     alt="green iguana"
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        title Lizard
+                        {title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        Description Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
+                        {description}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" variant='contained' sx={{ mx: 'auto' }}>Buy Now</Button>
+                        <Link to='/purchase'><Button size="small" variant='contained' onClick={'fddfds'} sx={{ mx: 'auto' }}>Buy Now</Button></Link>
                 </CardActions>
             </Card>
-</Box>
+            </Box>
+        </Grid>
     );
 };
 
