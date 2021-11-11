@@ -5,12 +5,15 @@ import { Button, Container, TextField, Typography } from '@mui/material';
 import { blue, grey } from '@mui/material/colors';
 import googleSVG from '../../../images/google.svg'
 import loginSVG from '../../../images/login.svg'
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 const Login = () => {
     const { singInGoogle, logInWithEmail } = useAuth();
+    const history = useHistory();
+    const location = useLocation()
     const [loginData, setLoginData] = useState({});
-    console.log(loginData);
+    console.log(location);
+    const redirect_url = location?.state?.from || '/home'
     const handleOnBlur = (e) => {
         const field = e.target.name;
         const value = e.target.value;
@@ -19,7 +22,7 @@ const Login = () => {
         setLoginData(newLoginData);
     }
     const handleSubmit = (e) => {
-        logInWithEmail(loginData.email, loginData.password);
+        logInWithEmail(loginData.email, loginData.password, redirect_url, history);
         e.preventDefault();
     }
 
@@ -34,9 +37,12 @@ const Login = () => {
                     </Box>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <Box style={{ display: 'block', height: '100vh', backgroundColor: grey[900], padding: '0 3rem' }}>
-                        <Typography color="white" sx={{ py: '5rem' }} style={{ textAlign: 'left', }} variant="h3" component='h3'>
-                            Welcome
+                    <Box style={{ display: 'block', height: '100vh', backgroundColor: grey[900], padding: '0 3rem'}}>
+                        <Typography color="white" sx={{ pt: '5rem', pb: '2rem' }} style={{ textAlign: 'left', }} variant="h3" component='h3'>
+                            Welcome Back
+                        </Typography>
+                        <Typography color={grey[400]} style={{ textAlign: 'left', }} variant="body2" component='p'>
+                           Login Your Existing Account
                         </Typography>
                         <form onSubmit={handleSubmit} sx={{ mt: '5rem', display: 'block' }}>
                             <TextField
@@ -53,7 +59,7 @@ const Login = () => {
                             />
                             <br />
                             <TextField
-                                sx={{ width: '80%', mt: '5rem' }}
+                                sx={{ width: '80%', mt: '3rem' }}
                                 id="filled-basic"
                                 label="Password"
                                 variant="standard"
@@ -67,8 +73,8 @@ const Login = () => {
                             <br />
                             <Button sx={{ my: '2rem' }} type='submit' variant="contained">Login</Button>
                         </form>
-                        <Button onClick={singInGoogle}> <img style={{width: '30px'}} src={googleSVG} alt="" /></Button>
-                        <Typography color='white'>Don't Hava An Account? <Link to='/register'><Button>Sign Up</Button></Link> </Typography>
+                        <Button onClick={singInGoogle}> <img style={{ width: '30px' }} src={googleSVG} alt="" /></Button>
+                        <Typography color='white'>Don't Hava An Account? <Link to={{ pathname: '/register', state: { from: redirect_url } }}><Button>Sign Up</Button></Link> </Typography>
                     </Box>
                 </Grid>
             </Grid>

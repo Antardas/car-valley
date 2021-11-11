@@ -53,7 +53,7 @@ const Services = () => {
             <h3>All services</h3>
             <Grid sx={{ mx: 'auto' }} container spacing={2}>
                 {
-                    fakeData.map((product, index) => <Service product={product} index={index}></Service>)
+                    fakeData.map((product, index) => <Service product={product} key={index}></Service>)
                 }
             </Grid>
         </Container>

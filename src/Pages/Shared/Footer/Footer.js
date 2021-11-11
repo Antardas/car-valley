@@ -42,7 +42,7 @@ const Footer = () => {
                             </Typography>
                         </Box>
                     </Grid>
-                    <Grid color={grey[400]} container xs={12} sm={6} md={8} className='footer-li'>
+                    <Grid color={grey[400]} item xs={12} sm={6} md={8} className='footer-li'>
                         <Grid item xs={12} md={4}>
                             <Typography variant="h6" color={grey[50]}>Quick Links</Typography>
                             <ul>

@@ -6,10 +6,14 @@ import Alert from '@mui/material/Alert';
 import { blue, grey } from '@mui/material/colors';
 import googleSVG from '../../../images/google.svg'
 import loginSVG from '../../../images/login.svg'
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 const Register = () => {
     const { singInGoogle, registerWithEmail } = useAuth();
+    const history = useHistory();
+    const location = useLocation();
+    const redirect_url = location.state?.from || '/home'
+    console.log(location);
     const [singnUPData, setSignUpData] = useState({});
     const [success, setSuccess] = useState(true);
     const handleOnBlur = (e) => {
@@ -50,8 +54,11 @@ const Register = () => {
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <Box style={{ display: 'block', minHeight: '100vh', backgroundColor: grey[900], padding: '2rem 3rem' }}>
-                        <Typography color="white" sx={{ py: '5rem' }} style={{ textAlign: 'left', }} variant="h3" component='h3'>
-                            Welcome
+                        <Typography color="white" sx={{ pt: '3rem' }} style={{ textAlign: 'left', }} variant="h3" component='h3'>
+                            Let's Get Started
+                        </Typography>
+                        <Typography color={grey[400]} sx={{ textAlign: 'left', pt: '2rem'}} variant="body2" component='p'>
+                            Login Your Existing Account
                         </Typography>
                         <form onSubmit={handleSubmit} sx={{ mt: '5rem', display: 'block' }}>
                             <TextField
@@ -113,7 +120,7 @@ const Register = () => {
                             <Button sx={{ my: '2rem' }} type='submit' variant="contained">Register</Button>
                         </form>
                         <Button onClick={singInGoogle}> <img style={{ width: '30px' }} src={googleSVG} alt="" /></Button>
-                        <Typography color='white'>Already Hava An Account? <Link to='/login'><Button>Login</Button></Link> </Typography>
+                        <Typography color='white'>Already Hava An Account? <Link to={{pathname: '/login', state:{from: redirect_url}}}><Button>Login</Button></Link> </Typography>
                     </Box>
                 </Grid>
             </Grid>

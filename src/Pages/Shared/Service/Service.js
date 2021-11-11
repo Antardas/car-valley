@@ -31,7 +31,7 @@ const Service = ({ product }) => {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                        <Link to='/purchase'><Button size="small" variant='contained' onClick={'fddfds'} sx={{ mx: 'auto' }}>Buy Now</Button></Link>
+                        <Link style={{display: 'inline-block', margin: '0 auto'}}to='/purchase'><Button size="small" variant='contained' sx={{ mx: 'auto' }}>Buy Now</Button></Link>
                 </CardActions>
             </Card>
             </Box>
