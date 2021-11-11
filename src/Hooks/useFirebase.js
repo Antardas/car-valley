@@ -9,6 +9,7 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [authError, setAuthError] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+    const [admin, setAdmin] = useState(false);
     const history = useHistory();
     console.log('calling Firbase', user);
 
@@ -91,6 +92,7 @@ const useFirebase = () => {
 
     // Save user to db
     const saveUser = (email, displayName, method) => {
+        setIsLoading(true);
         const user = { email, displayName }
         setIsLoading(true);
         console.log('saveUser', user);
@@ -102,8 +104,11 @@ const useFirebase = () => {
             body: JSON.stringify(user)
         }).then(res => res.json())
             .then(data => {
-                console.log(data);
+                if (data.isAdmin === true) {
+                    setAdmin(true);
+                }
             }).catch(err => console.log(err))
+        .finally(() => setIsLoading(false))
 
     }
 
@@ -123,6 +128,15 @@ const useFirebase = () => {
         return () => unSubscribe;
     }, [])
 
+    // Checking Logedin user admin or user
+    useEffect(() => {
+        const url = `http://localhost:5000/users/${user?.email}`
+        fetch(url)
+            .then(res => res.json())
+            .then(data => setAdmin(data))
+
+    }, [user?.email])
+
     return {
         user,
         singInGoogle,
@@ -131,7 +145,8 @@ const useFirebase = () => {
         isLoading,
         logOut,
         authError,
-        setAuthError
+        setAuthError,
+        admin
     }
 }
 export default useFirebase;

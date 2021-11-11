@@ -15,7 +15,7 @@ const MakeAdmin = () => {
         console.log({ email });
         const user = {email};
 
-        fetch('http://localhost:5000/makeAdmin', {
+        fetch('http://localhost:5000/users/makeAdmin', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -25,6 +25,9 @@ const MakeAdmin = () => {
             .then(data => {
                 if (data.modifiedCount) {
                     setSuccess(true);
+                    vanishAlert();
+                } else {
+                    setSuccess(false);
                     vanishAlert();
                 }
             }).catch(err => console.log(err))
@@ -39,13 +42,13 @@ const MakeAdmin = () => {
 
     return (
         <div>
-            <Box style={{ position: 'absolute', width: '320px', margin: '0 auto', right: 0, left: 0, marginTop: '2rem' }}>
+            <Box style={{ position: 'absolute', width: '320px', margin: '0 auto', right: 0, left: 0, marginTop: '1rem', zIndex: '1' }}>
                 {
-                    success && <Alert severity="error">Add Admin Successfully</Alert>
+                    success && <Alert severity="success">Add Admin Successfully</Alert>
 
                 }
             </Box>
-            <form onSubmit={handleSubmit}>
+            <form style={{zIndex:'-1', marginTop: '5rem'}} onSubmit={handleSubmit}>
                 <TextField style={{ width: '500px' }} onBlur={handleOnBlur} required name='email' type='email' id="outlined-basic" label="email" variant="outlined" />
                 <br />
                 <Button sx={{ mt: 2 }} variant="contained" color="primary" type='submit'>Add</Button>

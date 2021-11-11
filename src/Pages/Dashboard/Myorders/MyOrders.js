@@ -7,6 +7,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import useAuth from '../../../Hooks/useAuth';
+import { Typography } from '@mui/material';
+import { blue } from '@mui/material/colors';
 
 
 
@@ -25,6 +27,7 @@ const MyOrders = () => {
     }, [user?.email]);
     return (
         <div>
+            <Typography color={blue[500]} sx={{mb: 5}} variant='h3'>My All Orders</Typography>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>

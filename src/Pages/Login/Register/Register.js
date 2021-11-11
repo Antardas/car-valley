@@ -22,6 +22,7 @@ const Register = () => {
         const newLoginData = { ...singnUPData };
         newLoginData[field] = value;
         setSignUpData(newLoginData);
+        console.log(singnUPData)
     }
     const vanishAlert = () => {
         setTimeout(() => {

@@ -39,7 +39,7 @@ const ManageOrders = () => {
                     <TableBody>
                         {orders.map((order) => (
                             <TableRow
-                                key={order.productName}
+                                key={order._id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">

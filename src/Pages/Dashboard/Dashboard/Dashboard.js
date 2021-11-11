@@ -6,25 +6,17 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { blue } from '@mui/material/colors';
 import {
-    BrowserRouter as Router,
     Switch,
     Route,
     Link,
-    useParams,
     useRouteMatch
 } from "react-router-dom";
-import Navigation from '../../Shared/Navigation/Navigation';
 import MyOrders from '../Myorders/MyOrders';
 import Pay from '../Pay/Pay';
 import AddReview from '../AddReview/AddReview';
@@ -33,10 +25,11 @@ import { Button } from '@mui/material';
 import useAuth from '../../../Hooks/useAuth';
 import ManageOrders from '../ManageOrders/ManageOrder';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import AdminRoute from '../AdminRoute/AdminRoute';
 const drawerWidth = 200;
 
 function Dashboard(props) {
-    const { logOut } = useAuth();
+    const { logOut, admin } = useAuth();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     let { path, url } = useRouteMatch();
@@ -50,37 +43,40 @@ function Dashboard(props) {
             <Divider />
             <List>
                 {/* Side Menu  */}
-                <Typography variant="button" sx={{ mt: '1rem' }} color='white' component="div">
-                    <Link to={`${url}/myOrders`} style={{
-                        color: blue[500]
-                    }}>My Orders</Link>
-                </Typography>
-                <Typography variant="button" sx={{ mt: '1rem' }} color='white' component="div">
-                    <Link to={`${url}/myOrders`} style={{
-                        color: blue[500]
-                    }}>Review</Link>
-                </Typography>
-                <Typography variant="button" sx={{ mt: '1rem' }} color='white' component="div">
-                    <Link to={`${url}/pay`} style={{
-                        color: blue[500]
-                    }}>Pay</Link>
-                </Typography>
                 
-                <Typography variant="button" sx={{ mt: '1rem' }} color='white' component="div">
-                    <Link to={`${url}/addProduct`} style={{
-                        color: blue[500]
-                    }}>Add Product</Link>
-                </Typography>
-                <Typography variant="button" sx={{ mt: '1rem' }} color='white' component="div">
-                    <Link to={`${url}/manageOrder`} style={{
-                        color: blue[500]
-                    }}>Manage Order</Link>
-                </Typography>
-                <Typography variant="button" sx={{ mt: '1rem' }} color='white' component="div">
-                    <Link to={`${url}/makeAdmin`} style={{
-                        color: blue[500]
-                    }}>Make Admin</Link>
-                </Typography>
+                {
+                    admin ? <Box>
+                        <Typography variant="button" sx={{ mt: '1rem' }} color='white' component="div">
+                            <Link to={`${url}/addProduct`} style={{
+                                color: blue[500]
+                            }}>Add Product</Link>
+                        </Typography>
+                        <Typography variant="button" sx={{ mt: '1rem' }} color='white' component="div">
+                            <Link to={`${url}/manageOrder`} style={{
+                                color: blue[500]
+                            }}>Manage Order</Link>
+                        </Typography>
+                        <Typography variant="button" sx={{ mt: '1rem' }} color='white' component="div">
+                            <Link to={`${url}/makeAdmin`} style={{
+                                color: blue[500]
+                            }}>Make Admin</Link>
+                        </Typography>
+                    </Box> : <Box>                <Typography variant="button" sx={{ mt: '1rem' }} color='white' component="div">
+                        <Link to={`${url}/myOrders`} style={{
+                            color: blue[500]
+                        }}>My Orders</Link>
+                    </Typography>
+                        <Typography variant="button" sx={{ mt: '1rem' }} color='white' component="div">
+                            <Link to={`${url}/addReview`} style={{
+                                color: blue[500]
+                            }}>Review</Link>
+                        </Typography>
+                        <Typography variant="button" sx={{ mt: '1rem' }} color='white' component="div">
+                            <Link to={`${url}/pay`} style={{
+                                color: blue[500]
+                            }}>Pay</Link>
+                        </Typography></Box>
+                }
                 <Button variant="contained" onClick={logOut}>
                     Log Out
                 </Button>
@@ -162,23 +158,20 @@ function Dashboard(props) {
                     <Route path={`${path}/pay`}>
                         <Pay />
                     </Route>
-                    <Route path={`${path}/review`}>
+                    <Route path={`${path}/addReview`}>
                         <AddReview />
                     </Route>
-                    <Route path={`${path}/addProduct`}>
+                    <AdminRoute path={`${path}/addProduct`}>
                         <AddProduct />
-                    </Route>
-                    <Route path={`${path}/addProduct`}>
-                        <AddProduct />
-                    </Route>
-                    <Route path={`${path}/manageOrder`}>
+                    </AdminRoute>
+                    <AdminRoute path={`${path}/manageOrder`}>
                         <ManageOrders />
-                    </Route>
-                    <Route path={`${path}/makeAdmin`}>
+                    </AdminRoute>
+                    <AdminRoute path={`${path}/makeAdmin`}>
                         <MakeAdmin />
-                    </Route>
+                    </AdminRoute>
+
                 </Switch>
-                <h3>Your Content Here</h3>
             </Box>
         </Box>
     );

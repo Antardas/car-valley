@@ -38,7 +38,8 @@ const AddProduct = () => {
                     vanishAlert()
                     // loop in object to get all keys
                     for (let key in addProductData) {
-                        addProductData[key] = '';
+                        
+                        setAddProductData(addProductData[key] = '');
                     }
                     setSuccess(true);
                 } else {
@@ -51,6 +52,7 @@ const AddProduct = () => {
         e.preventDefault();
     }
 
+
     return (
         <Box>
             {
@@ -62,15 +64,15 @@ const AddProduct = () => {
             <form onSubmit={handleSubmit}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={6}>
-                        <TextField style={{ width: '80%', marginTop: '1rem' }} id="title" onBlur={handleOnBlur} name="title" label="Product Title" placeholder="Product Title" variant="outlined" />
-                        <TextField style={{ width: '80%', marginTop: '1rem' }} id="desctiption" onBlur={handleOnBlur} name='description' label="Product Description" placeholder="Product Description" variant="outlined" />
+                        <TextField defaultValue={addProductData.name} style={{ width: '80%', marginTop: '1rem' }} id="title" onBlur={handleOnBlur} name="title" label="Product Title" placeholder="Product Title" variant="outlined" />
+                        <TextField defaultValue={addProductData.description} style={{ width: '80%', marginTop: '1rem' }} id="desctiption" onBlur={handleOnBlur} name='description' label="Product Description" placeholder="Product Description" variant="outlined" />
                     </Grid>
                     <Grid item xs={12} md={6}>
-                        <TextField style={{ width: '80%', marginTop: '1rem' }} id="desctiption" onBlur={handleOnBlur} name='price' label="Price" placeholder="Price" variant="outlined" />
-                        <TextField style={{ width: '80%', marginTop: '1rem' }} id="imgUrl" onBlur={handleOnBlur} type='url' name='img' label="Img Url" placeholder="Img Url" variant="outlined" />
+                        <TextField defaultValue={addProductData.price} style={{ width: '80%', marginTop: '1rem' }} id="desctiption" onBlur={handleOnBlur} name='price' label="Price" placeholder="Price" variant="outlined" />
+                        <TextField defaultValue={addProductData.img} style={{ width: '80%', marginTop: '1rem' }} id="imgUrl" onBlur={handleOnBlur} type='url' name='img' label="Img Url" placeholder="Img Url" variant="outlined" />
                     </Grid>
                     <Grid item xs={12} md={6}>
-                <TextField style={{ width: '80%', marginTop: '1rem' }} id="model" name="model" onBlur={handleOnBlur} label="Product Model" placeholder="Model" variant="outlined" />
+                        <TextField defaultValue={addProductData.model} style={{ width: '80%', marginTop: '1rem' }} id="model" name="model" onBlur={handleOnBlur} label="Product Model" placeholder="Model" variant="outlined" />
 
                     </Grid>
                 </Grid>
