@@ -61,16 +61,16 @@ const AddProduct = () => {
             }
             <form onSubmit={handleSubmit}>
                 <Grid container spacing={2}>
-                    <Grid xs={12} md={6}>
+                    <Grid item xs={12} md={6}>
                         <TextField style={{ width: '80%', marginTop: '1rem' }} id="title" onBlur={handleOnBlur} name="title" label="Product Title" placeholder="Product Title" variant="outlined" />
-                        <TextField style={{ width: '80%', marginTop: '1rem' }} id="desctiption" onBlur={handleOnBlur} name='description' label="Product Description" Placeholder="Product Description" variant="outlined" />
+                        <TextField style={{ width: '80%', marginTop: '1rem' }} id="desctiption" onBlur={handleOnBlur} name='description' label="Product Description" placeholder="Product Description" variant="outlined" />
                     </Grid>
-                    <Grid xs={12} md={6}>
-                        <TextField style={{ width: '80%', marginTop: '1rem' }} id="desctiption" onBlur={handleOnBlur} name='price' label="Price" Placeholder="Price" variant="outlined" />
+                    <Grid item xs={12} md={6}>
+                        <TextField style={{ width: '80%', marginTop: '1rem' }} id="desctiption" onBlur={handleOnBlur} name='price' label="Price" placeholder="Price" variant="outlined" />
                         <TextField style={{ width: '80%', marginTop: '1rem' }} id="imgUrl" onBlur={handleOnBlur} type='url' name='img' label="Img Url" placeholder="Img Url" variant="outlined" />
                     </Grid>
-                    <Grid xs={12} md={6}>
-                <TextField style={{ width: '80%', marginTop: '1rem' }} id="model" name="model" onBlur={handleOnBlur} label="Product Model" Placeholder="Model" variant="outlined" />
+                    <Grid item xs={12} md={6}>
+                <TextField style={{ width: '80%', marginTop: '1rem' }} id="model" name="model" onBlur={handleOnBlur} label="Product Model" placeholder="Model" variant="outlined" />
 
                     </Grid>
                 </Grid>

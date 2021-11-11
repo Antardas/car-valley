@@ -32,6 +32,7 @@ import AddProduct from '../AddProduct/AddProduct';
 import { Button } from '@mui/material';
 import useAuth from '../../../Hooks/useAuth';
 import ManageOrders from '../ManageOrders/ManageOrder';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
 const drawerWidth = 200;
 
 function Dashboard(props) {
@@ -74,6 +75,11 @@ function Dashboard(props) {
                     <Link to={`${url}/manageOrder`} style={{
                         color: blue[500]
                     }}>Manage Order</Link>
+                </Typography>
+                <Typography variant="button" sx={{ mt: '1rem' }} color='white' component="div">
+                    <Link to={`${url}/makeAdmin`} style={{
+                        color: blue[500]
+                    }}>Make Admin</Link>
                 </Typography>
                 <Button variant="contained" onClick={logOut}>
                     Log Out
@@ -167,6 +173,9 @@ function Dashboard(props) {
                     </Route>
                     <Route path={`${path}/manageOrder`}>
                         <ManageOrders />
+                    </Route>
+                    <Route path={`${path}/makeAdmin`}>
+                        <MakeAdmin />
                     </Route>
                 </Switch>
                 <h3>Your Content Here</h3>

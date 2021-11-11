@@ -126,7 +126,7 @@ const Register = () => {
                             <br />
                             <Button sx={{ my: '2rem' }} type='submit' variant="contained">Register</Button>
                         </form>
-                        <Button onClick={singInGoogle}> <img style={{ width: '30px' }} src={googleSVG} alt="" /></Button>
+                        <Button onClick={() => singInGoogle(redirect_url, history)}> <img style={{ width: '30px' }} src={googleSVG} alt="" /></Button>
                         <Typography color='white'>Already Hava An Account? <Link to={{ pathname: '/login', state: { from: redirect_url } }}><Button>Login</Button></Link> </Typography>
                     </Box>
                 </Grid>

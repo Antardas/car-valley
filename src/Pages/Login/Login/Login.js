@@ -1,14 +1,14 @@
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
-import { Button, Container, TextField, Typography } from '@mui/material';
+import { Alert, Button, Container, TextField, Typography } from '@mui/material';
 import { blue, grey } from '@mui/material/colors';
 import googleSVG from '../../../images/google.svg'
 import loginSVG from '../../../images/login.svg'
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 const Login = () => {
-    const { singInGoogle, logInWithEmail } = useAuth();
+    const { singInGoogle, logInWithEmail, authError, setAuthError } = useAuth();
     const history = useHistory();
     const location = useLocation()
     const [loginData, setLoginData] = useState({});
@@ -25,7 +25,13 @@ const Login = () => {
         logInWithEmail(loginData.email, loginData.password, redirect_url, history);
         e.preventDefault();
     }
+    const vanishAlert = () => {
+        setTimeout(() => {
+            setAuthError('');
 
+        }, 3000);
+    }
+    authError && vanishAlert();
 
     return (
         <Box >
@@ -37,6 +43,12 @@ const Login = () => {
                     </Box>
                 </Grid>
                 <Grid item xs={12} md={6}>
+
+                    <Box style={{ position: 'absolute', width: '320px', margin: '0 auto', right: 0, left: 0, marginTop: '2rem' }}>
+                        {
+                            authError ? <Alert sx={{ mb: '2rem' }} severity="error">{authError}</Alert> : null
+                        }
+                    </Box>
                     <Box style={{ display: 'block', height: '100vh', backgroundColor: grey[900], padding: '0 3rem'}}>
                         <Typography color="white" sx={{ pt: '5rem', pb: '2rem' }} style={{ textAlign: 'left', }} variant="h3" component='h3'>
                             Welcome Back
@@ -52,6 +64,7 @@ const Login = () => {
                                 variant="standard"
                                 type="email"
                                 name="email"
+                                required
                                 onBlur={handleOnBlur}
                                 className='textfield'
                                 InputProps={{ className: 'textfield' }}
@@ -65,6 +78,7 @@ const Login = () => {
                                 variant="standard"
                                 type="password"
                                 name="password"
+                                required
                                 onBlur={handleOnBlur}
                                 className='textfield'
                                 InputProps={{ className: 'textfield' }}
@@ -73,7 +87,7 @@ const Login = () => {
                             <br />
                             <Button sx={{ my: '2rem' }} type='submit' variant="contained">Login</Button>
                         </form>
-                        <Button onClick={singInGoogle}> <img style={{ width: '30px' }} src={googleSVG} alt="" /></Button>
+                        <Button onClick={() => singInGoogle(redirect_url, history)}> <img style={{ width: '30px' }} src={googleSVG} alt="" /></Button>
                         <Typography color='white'>Don't Hava An Account? <Link to={{ pathname: '/register', state: { from: redirect_url } }}><Button>Sign Up</Button></Link> </Typography>
                     </Box>
                 </Grid>

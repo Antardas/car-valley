@@ -11,14 +11,20 @@ const useFirebase = () => {
     const [isLoading, setIsLoading] = useState(true);
     const history = useHistory();
     console.log('calling Firbase', user);
+
+
+
+
     // sing in google auth
-    const singInGoogle = () => {
+    const singInGoogle = (redirect_url, history) => {
         setIsLoading(true)
         const googleProvider = new GoogleAuthProvider();
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 const user = result.user;
                 setUser(user);
+                saveUser(user.email, user.displayName, 'PUT');
+                history.replace(redirect_url);
             }).catch((error) => {
                 setAuthError(error.message);
             }).then(() => setIsLoading(false));
@@ -28,7 +34,7 @@ const useFirebase = () => {
     const registerWithEmail = (email, password, name, redirect_url, history) => {
         console.log(name, email, password, 'fero register');
         setIsLoading(true)
-        createUserWithEmailAndPassword (auth, email, password)
+        createUserWithEmailAndPassword(auth, email, password)
             .then(result => {
                 const user = result.user;
                 const photourl = 'https://smcatalog.ru/upload/resize_cache/iblock/44c/60_60_1/44c96c6e612e94e45489acce024c8d76.png'
@@ -38,6 +44,7 @@ const useFirebase = () => {
                     photoURL: photourl
                 }
                 setUser(newUser);
+                saveUser(email, name, 'POST');
                 updateProfile(auth.currentUser, {
                     displayName: name
                 }).then(() => {
@@ -46,6 +53,7 @@ const useFirebase = () => {
                 }).catch((error) => {
                     // An error occurred
                     // ...
+                    setAuthError(error.message);
                 });
                 setAuthError('');
                 history.replace(redirect_url)
@@ -58,7 +66,7 @@ const useFirebase = () => {
     // Sign In With Email & Password
     const logInWithEmail = (email, password, redirect_url, history) => {
         setIsLoading(true);
-        console.log('logInWithEmail', email,password);
+        console.log('logInWithEmail', email, password);
         signInWithEmailAndPassword(auth, email, password)
             .then(result => {
                 const user = result.user;
@@ -79,6 +87,24 @@ const useFirebase = () => {
         }).catch((error) => {
             setAuthError(error.message);
         }).then(() => setIsLoading(false));
+    }
+
+    // Save user to db
+    const saveUser = (email, displayName, method) => {
+        const user = { email, displayName }
+        setIsLoading(true);
+        console.log('saveUser', user);
+        fetch('http://localhost:5000/users', {
+            method: method,
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        }).then(res => res.json())
+            .then(data => {
+                console.log(data);
+            }).catch(err => console.log(err))
+
     }
 
 
@@ -104,7 +130,8 @@ const useFirebase = () => {
         logInWithEmail,
         isLoading,
         logOut,
-        authError
+        authError,
+        setAuthError
     }
 }
 export default useFirebase;

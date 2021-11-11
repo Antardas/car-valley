@@ -14,6 +14,8 @@ import useAuth from '../../../Hooks/useAuth';
 const MyOrders = () => {
     const [orders, setOrders] = useState([]);
     const { user } = useAuth();
+    console.log(orders);
+    
     useEffect(() => {
 
         const url = `http://localhost:5000/orders/${user?.email}`;
