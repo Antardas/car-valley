@@ -3,7 +3,7 @@ import React from 'react';
 import Rating from '@mui/material/Rating';
 const Review = () => {
     return (
-        <Grid item sx={12} sm={6} md={4} lg={3}>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
             <img style={{ borderRadius: '50%', width: "3rem" }} alt='user' src='https://cdn-icons-png.flaticon.com/512/149/149071.png' />
             <Typography variant='body1' component='h6'>
                 Title

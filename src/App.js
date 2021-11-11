@@ -7,6 +7,8 @@ import {
 import Home from './Pages/Home/Home/Home';
 import Services from './Pages/Shared/Services/Services';
 import AuthProvider from './Context/AuthProvider/AuthProvider';
+import Login from './Pages/Login/Login/Login';
+import Register from './Pages/Login/Register/Register';
 function App() {
   return (
     <div className="App">
@@ -21,6 +23,12 @@ function App() {
             </Route>
             <Route path="/allProducts">
               <Services></Services>
+            </Route>
+            <Route path="/login">
+              <Login></Login>
+            </Route>
+            <Route path="/register">
+              <Register></Register>
             </Route>
           </Switch>
         </Router>

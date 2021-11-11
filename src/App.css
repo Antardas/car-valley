@@ -44,3 +44,9 @@
 a {
   text-decoration: none;
 }
+.textfield {
+  color: white !important
+}
+.textfield__label {
+  color: white !important;
+}

@@ -1,24 +1,78 @@
 import { Box } from '@mui/system';
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
+import { Button, Container, TextField, Typography } from '@mui/material';
+import { blue, grey } from '@mui/material/colors';
+import googleSVG from '../../../images/google.svg'
+import loginSVG from '../../../images/login.svg'
+import { Link } from 'react-router-dom';
+import useAuth from '../../../Hooks/useAuth';
 const Login = () => {
-    const handleSubmit = () => {
-
+    const { singInGoogle, logInWithEmail } = useAuth();
+    const [loginData, setLoginData] = useState({});
+    console.log(loginData);
+    const handleOnBlur = (e) => {
+        const field = e.target.name;
+        const value = e.target.value;
+        const newLoginData = { ...loginData };
+        newLoginData[field] = value;
+        setLoginData(newLoginData);
     }
-    return (
-        <Box>
-            <Grid container spacing={2}>
-                <Grid item xs={6}>
-                    
-                </Grid>
-                <Grid item xs={6}>
-                    <Box>
-                        <form onsubmit={handleSubmit}>
+    const handleSubmit = (e) => {
+        logInWithEmail(loginData.email, loginData.password);
+        e.preventDefault();
+    }
 
+
+    return (
+        <Box >
+
+            <Grid container spacing={2}>
+                <Grid item xs={12} md={6}>
+                    <Box style={{ display: 'block', marginTop: '5rem' }}>
+                        <img style={{ width: '100%' }} src={loginSVG} alt="" />
+                    </Box>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <Box style={{ display: 'block', height: '100vh', backgroundColor: grey[900], padding: '0 3rem' }}>
+                        <Typography color="white" sx={{ py: '5rem' }} style={{ textAlign: 'left', }} variant="h3" component='h3'>
+                            Welcome
+                        </Typography>
+                        <form onSubmit={handleSubmit} sx={{ mt: '5rem', display: 'block' }}>
+                            <TextField
+                                sx={{ width: '80%' }}
+                                id="email"
+                                label="Email"
+                                variant="standard"
+                                type="email"
+                                name="email"
+                                onBlur={handleOnBlur}
+                                className='textfield'
+                                InputProps={{ className: 'textfield' }}
+                                InputLabelProps={{ className: 'textfield__label' }}
+                            />
+                            <br />
+                            <TextField
+                                sx={{ width: '80%', mt: '5rem' }}
+                                id="filled-basic"
+                                label="Password"
+                                variant="standard"
+                                type="password"
+                                name="password"
+                                onBlur={handleOnBlur}
+                                className='textfield'
+                                InputProps={{ className: 'textfield' }}
+                                InputLabelProps={{ className: 'textfield__label' }}
+                            />
+                            <br />
+                            <Button sx={{ my: '2rem' }} type='submit' variant="contained">Login</Button>
                         </form>
+                        <Button onClick={singInGoogle}> <img style={{width: '30px'}} src={googleSVG} alt="" /></Button>
+                        <Typography color='white'>Don't Hava An Account? <Link to='/register'><Button>Sign Up</Button></Link> </Typography>
                     </Box>
                 </Grid>
             </Grid>
+
         </Box>
     );
 };
