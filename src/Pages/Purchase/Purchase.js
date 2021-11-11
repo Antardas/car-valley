@@ -1,13 +1,15 @@
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
-import { Button, Container, TextField, Typography } from '@mui/material';
+import { Button, CircularProgress, Container, TextField, Typography } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import { blue, grey } from '@mui/material/colors';
 import { Link } from 'react-router-dom';
+import useAuth from '../../Hooks/useAuth';
 const Purchase = () => {
     const [singnUPData, setSignUpData] = useState({});
     const [success, setSuccess] = useState(true);
+    const { user, isLoading } = useAuth();
     const handleOnBlur = (e) => {
         const field = e.target.name;
         const value = e.target.value;
@@ -22,6 +24,7 @@ const Purchase = () => {
 
         e.preventDefault();
     }
+    if (isLoading) { return <CircularProgress/>}
 
 
     return (

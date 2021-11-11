@@ -10,7 +10,7 @@ const useFirebase = () => {
     const [authError, setAuthError] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const history = useHistory();
-    console.log('calling Firbase', history);
+    console.log('calling Firbase', user);
     // sing in google auth
     const singInGoogle = () => {
         setIsLoading(true)
@@ -57,6 +57,7 @@ const useFirebase = () => {
 
     // Sign In With Email & Password
     const logInWithEmail = (email, password, redirect_url, history) => {
+        setIsLoading(true);
         console.log('logInWithEmail', email,password);
         signInWithEmailAndPassword(auth, email, password)
             .then(result => {
@@ -72,6 +73,7 @@ const useFirebase = () => {
 
     // Logout user
     const logOut = () => {
+        setIsLoading(true);
         signOut(auth).then(() => {
             setUser({});
         }).catch((error) => {
@@ -82,15 +84,15 @@ const useFirebase = () => {
 
     // Observed User Auth
     useEffect(() => {
-        setIsLoading(true);
+        setIsLoading(true)
         const unSubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user);
             } else {
                 setUser({});
             }
+            setIsLoading(false);
         });
-        setIsLoading(false);
 
         return () => unSubscribe;
     }, [])
