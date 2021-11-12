@@ -9,22 +9,24 @@ import Paper from '@mui/material/Paper';
 import useAuth from '../../../Hooks/useAuth';
 import { Typography } from '@mui/material';
 import { blue } from '@mui/material/colors';
+import { Redirect } from 'react-router-dom';
 
 
 
 
 const MyOrders = () => {
     const [orders, setOrders] = useState([]);
-    const { user } = useAuth();
+    const { user, admin } = useAuth();
     console.log(orders);
+    // redirect to Manage orders page if user is admin
     
     useEffect(() => {
-
         const url = `http://localhost:5000/orders/${user?.email}`;
         fetch(url)
-            .then(res => res.json())
-            .then(data => setOrders(data));
+        .then(res => res.json())
+        .then(data => setOrders(data));
     }, [user?.email]);
+    if (admin) { return <Redirect to="/dashboard/manageOrder" />}
     return (
         <div>
             <Typography color={blue[500]} sx={{mb: 5}} variant='h3'>My All Orders</Typography>

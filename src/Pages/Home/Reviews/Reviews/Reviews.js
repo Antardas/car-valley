@@ -26,14 +26,16 @@ const Reviews = () => {
         },
     ] */
     const [reviews, setReviews] = useState([]);
+    
     useEffect(() => {
+       
         fetch('http://localhost:5000/reviews')
             .then(res => res.json())
             .then(data => setReviews(data));
     }, []);
     return (
         <div>
-            <Container>
+            <Container sx={{py: '2rem'}}>
 
                 <Typography variant="h4" component='h4'>
                     Latest Review
