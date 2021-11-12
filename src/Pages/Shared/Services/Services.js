@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 const Services = () => {
 
     const [porducts, setProducts] = useState([]);
-    console.log(porducts);
     // get all Products
     useEffect(() => {
         fetch('http://localhost:5000/products')

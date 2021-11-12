@@ -12,7 +12,6 @@ import useAuth from '../../../Hooks/useAuth';
 
 const Navigation = () => {
     const { singInGoogle, user, logOut } = useAuth();
-console.log(user)
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">

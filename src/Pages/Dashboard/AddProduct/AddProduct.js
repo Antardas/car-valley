@@ -1,10 +1,9 @@
 import { Alert, Button, Grid, TextField } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
-import useAuth from '../../../Hooks/useAuth';
 
 const AddProduct = () => {
-    
+
     const [addProductData, setAddProductData] = useState({});
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
@@ -38,7 +37,7 @@ const AddProduct = () => {
                     vanishAlert()
                     // loop in object to get all keys
                     for (let key in addProductData) {
-                        
+
                         setAddProductData(addProductData[key] = '');
                     }
                     setSuccess(true);
@@ -51,15 +50,23 @@ const AddProduct = () => {
         console.log('calling handleSubmit')
         e.preventDefault();
     }
-
+    const alertStyle = {
+        position: 'absolute',
+        width: '320px',
+        margin: '0 auto',
+        right: 0,
+        left: 0,
+        marginTop: '2rem'
+    }
 
     return (
         <Box>
+            {/* show alert if product added succesfully */}
             {
-                success ? <Alert sx={{mb: '2rem'}} severity="success">This is a success alert — check it out!</Alert> : null
+                success ? <Alert style={alertStyle} severity="success">This is a success alert — check it out!</Alert> : null
             }
             {
-                error ? <Alert sx={{mb: '2rem'}} severity="error">This is a success alert — check it out!</Alert> : null
+                error ? <Alert style={alertStyle} severity="error">This is a success alert — check it out!</Alert> : null
             }
             <form onSubmit={handleSubmit}>
                 <Grid container spacing={2}>

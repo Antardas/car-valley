@@ -10,7 +10,6 @@ import { Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const Service = ({ product }) => {
-    console.log(product);
     const { img, title, description, _id } = product;
     return (
         <Grid item xs={12} sx={{ mx: 'auto' }} sm={6} md={4} lg={3}>

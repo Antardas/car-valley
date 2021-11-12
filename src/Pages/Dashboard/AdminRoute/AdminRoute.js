@@ -1,13 +1,8 @@
 import { CircularProgress } from '@mui/material';
 import React from 'react';
 import {
-    BrowserRouter as Router,
-    Switch,
     Route,
-    Link,
-    Redirect,
-    useHistory,
-    useLocation
+    Redirect
 } from "react-router-dom";
 import useAuth from '../../../Hooks/useAuth';
 const AdminRoute = ({ children, ...rest }) => {
