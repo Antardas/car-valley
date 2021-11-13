@@ -25,7 +25,7 @@ const AddProduct = () => {
     const handleSubmit = (e) => {
 
         // Add Product
-        fetch('http://localhost:5000/product', {
+        fetch('https://murmuring-crag-52755.herokuapp.com/product', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

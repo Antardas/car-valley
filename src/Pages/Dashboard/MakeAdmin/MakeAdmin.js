@@ -12,9 +12,9 @@ const MakeAdmin = () => {
     }
     const handleSubmit = (e) => {
         console.log({ email });
-        const user = {email};
+        const user = { email };
 
-        fetch('http://localhost:5000/users/makeAdmin', {
+        fetch('https://murmuring-crag-52755.herokuapp.com/users/makeAdmin', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -47,7 +47,7 @@ const MakeAdmin = () => {
 
                 }
             </Box>
-            <form style={{zIndex:'-1', marginTop: '5rem'}} onSubmit={handleSubmit}>
+            <form style={{ zIndex: '-1', marginTop: '5rem' }} onSubmit={handleSubmit}>
                 <TextField style={{ width: '500px' }} onBlur={handleOnBlur} required name='email' type='email' id="outlined-basic" label="email" variant="outlined" />
                 <br />
                 <Button sx={{ mt: 2 }} variant="contained" color="primary" type='submit'>Add</Button>

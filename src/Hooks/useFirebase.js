@@ -87,7 +87,7 @@ const useFirebase = () => {
         setIsLoading(true);
         const user = { email, displayName }
         setIsLoading(true);
-        fetch('http://localhost:5000/users', {
+        fetch('https://murmuring-crag-52755.herokuapp.com/users', {
             method: method,
             headers: {
                 'content-type': 'application/json'
@@ -99,7 +99,7 @@ const useFirebase = () => {
                     setAdmin(true);
                 }
             }).catch(err => console.log(err))
-        .finally(() => setIsLoading(false))
+            .finally(() => setIsLoading(false))
 
     }
 
@@ -122,7 +122,7 @@ const useFirebase = () => {
     // Checking Logedin user admin or user
     useEffect(() => {
 
-        const url = `http://localhost:5000/users/${user?.email}`
+        const url = `https://murmuring-crag-52755.herokuapp.com/users/${user?.email}`
         fetch(url)
             .then(res => res.json())
             .then(data => setAdmin(data))

@@ -23,7 +23,7 @@ const ManageOrders = () => {
     console.log(orders);
     useEffect(() => {
         console.log('load all orders')
-        const url = `http://localhost:5000/orders`;
+        const url = `https://murmuring-crag-52755.herokuapp.com/orders`;
         fetch(url)
             .then(res => res.json())
             .then(data => setOrders(data));
@@ -31,7 +31,7 @@ const ManageOrders = () => {
 
     // Handle Staus Change
     const handleStatusChange = (id) => {
-        const url = `http://localhost:5000/orders/${id}`;
+        const url = `https://murmuring-crag-52755.herokuapp.com/orders/${id}`;
         const data = {
             status: "shipped"
         };
@@ -60,10 +60,10 @@ const ManageOrders = () => {
 
     const handleDelete = (id) => { // confirm delete
         if (window.confirm('Are you sure you want to delete this order?')) {
-            const url = `http://localhost:5000/orders/${id}`;
+            const url = `https://murmuring-crag-52755.herokuapp.com/orders/${id}`;
             fetch(url, {
                 method: 'DELETE'
-                
+
             }).then(res => res.json())
                 .then(data => {
                     const newOrders = orders.filter(order => order._id !== id); // filter out the deleted order

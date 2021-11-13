@@ -27,7 +27,7 @@ const AddReview = () => {
     const handleSubmit = (e) => {
         // add review to database
         const newReview = { ...reviewData, rating: value };
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://murmuring-crag-52755.herokuapp.com/reviews', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -38,7 +38,7 @@ const AddReview = () => {
             .then(data => {
                 if (data.insertedId) {
                     setSuccess(true);
-                }else{
+                } else {
                     setError(true);
                 }
                 vanishAlert();

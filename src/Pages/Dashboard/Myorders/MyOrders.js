@@ -22,7 +22,7 @@ const MyOrders = () => {
 
     useEffect(() => {
         console.log("Load user all orders");
-        const url = `http://localhost:5000/orders/${user?.email}`;
+        const url = `https://murmuring-crag-52755.herokuapp.com/orders/${user?.email}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setOrders(data));
@@ -32,7 +32,7 @@ const MyOrders = () => {
     const handleDelete = (id) => {
         console.log(id);
         if (window.confirm('Are you sure you want to delete this order?')) {
-            const url = `http://localhost:5000/orders/${id}`;
+            const url = `https://murmuring-crag-52755.herokuapp.com/orders/${id}`;
             fetch(url, {
                 method: 'DELETE',
             })
@@ -48,7 +48,7 @@ const MyOrders = () => {
     }
     // redirect to Manage orders page if user is admin
     if (admin) { return <Redirect to="/dashboard/manageOrder" /> }
- 
+
     return (
         <div>
             <Typography color={blue[500]} sx={{ mb: 5 }} variant='h3'>My All Orders</Typography>

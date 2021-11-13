@@ -26,7 +26,7 @@ const Purchase = () => {
     const handleOnBlur = (e) => {
         const field = e.target.name;
         const value = e.target.value;
-         setPurchaseData({ ...purchaseData, productId, productName, price, [field]: value, status: "pending" });
+        setPurchaseData({ ...purchaseData, productId, productName, price, [field]: value, status: "pending" });
 /*         newPurchaseData[field] = value;
         setPurchaseData(newPurchaseData);
  */        console.log(purchaseData);
@@ -34,7 +34,7 @@ const Purchase = () => {
     const handleSubmit = (e) => {
         const newData = { ...purchaseData };
         console.log(newData);
-        fetch('http://localhost:5000/orders', {
+        fetch('https://murmuring-crag-52755.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -48,7 +48,7 @@ const Purchase = () => {
 
     // get single product via id
     useEffect(() => {
-        const url = `http://localhost:5000/products/${id}`;
+        const url = `https://murmuring-crag-52755.herokuapp.com/products/${id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setProduct(data));
@@ -59,7 +59,7 @@ const Purchase = () => {
 
     return (
         <Box >
-            <Navigation/>
+            <Navigation />
             <Grid container spacing={2}>
 
                 {/* // purchase page Product detail */}
