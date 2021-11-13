@@ -18,13 +18,16 @@ import EditIcon from '@mui/icons-material/Edit';
 const ManageOrders = () => {
     const [orders, setOrders] = useState([]);
     const { user, admin } = useAuth();
+    const [calling, setCalling] = useState(false);
+
     console.log(orders);
     useEffect(() => {
+        console.log('load all orders')
         const url = `http://localhost:5000/orders`;
         fetch(url)
             .then(res => res.json())
             .then(data => setOrders(data));
-    }, [orders]);
+    }, [user?.email, calling]);
 
     // Handle Staus Change
     const handleStatusChange = (id) => {
@@ -32,7 +35,6 @@ const ManageOrders = () => {
         const data = {
             status: "shipped"
         };
-        console.log(data);
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -42,34 +44,34 @@ const ManageOrders = () => {
             body: JSON.stringify(data),
         }).then(res => res.json())
             .then(data => {
-                console.log(data);
                 const newOrders = orders.map(order => {
                     if (order._id === id) {
+
                         order.status = data.status;
                     }
                     return order;
                 });
+                setCalling(!calling);
                 setOrders(newOrders);
             }).catch(err => console.log(err));
     };
 
     // Handle Delete Order
-    const handleDelete = (id) => {
-        const url = `http://localhost:5000/orders/${id}`;
-        fetch(url, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
 
-            },
-        }).then(res => res.json())
-            .then(data => {
-                console.log(data);
-                const newOrders = orders.filter(order => order._id !== id); // filter out the deleted order
-                setOrders(newOrders);
-            }).catch(err => console.log(err));
-    };
-
+    const handleDelete = (id) => { // confirm delete
+        if (window.confirm('Are you sure you want to delete this order?')) {
+            const url = `http://localhost:5000/orders/${id}`;
+            fetch(url, {
+                method: 'DELETE'
+                
+            }).then(res => res.json())
+                .then(data => {
+                    const newOrders = orders.filter(order => order._id !== id); // filter out the deleted order
+                    setCalling(!calling);
+                    setOrders(newOrders);
+                }).catch(err => console.log(err));
+        }
+    }
     return (
         <div>
             <TableContainer component={Paper}>
@@ -104,7 +106,7 @@ const ManageOrders = () => {
                                     }
                                 </TableCell>
                                 <TableCell align="right">
-                                    <Button onClick={() =>handleDelete(order._id)}><DeleteIcon /></Button>
+                                    <Button onClick={() => handleDelete(order._id)}><DeleteIcon /></Button>
                                 </TableCell>
                             </TableRow>
                         ))}

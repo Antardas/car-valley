@@ -6,9 +6,10 @@ import {
 } from "react-router-dom";
 import useAuth from '../../../Hooks/useAuth';
 const AdminRoute = ({ children, ...rest }) => {
-    const { user, admin } = useAuth();
+    const { user, isLoading, admin } = useAuth();
     console.log(user, admin);
-    if(user?.email && !admin){return <CircularProgress/>}
+    if (user?.email && !admin) { return <CircularProgress /> };
+
     return (
         <Route
             {...rest}
@@ -18,7 +19,7 @@ const AdminRoute = ({ children, ...rest }) => {
                 ) : (
                     <Redirect
                         to={{
-                            pathname: "/dashboard",
+                            pathname: "/dashboard/myOrders",
                             state: { from: location }
                         }}
                     />

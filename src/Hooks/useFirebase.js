@@ -121,10 +121,12 @@ const useFirebase = () => {
 
     // Checking Logedin user admin or user
     useEffect(() => {
+
         const url = `http://localhost:5000/users/${user?.email}`
         fetch(url)
             .then(res => res.json())
             .then(data => setAdmin(data))
+            .catch(err => console.log(err))
 
     }, [user?.email])
 
