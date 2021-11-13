@@ -35,7 +35,7 @@ const SecondNav = () => {
         },
         navIcon: {
             [theme.breakpoints.up('sm')]: {
-                display: 'none'
+                display: 'none !important'
             },
         },
         navLogo: {
@@ -80,16 +80,12 @@ const SecondNav = () => {
                             </ListItemText>
                         </ListItem>
 
-                        <ListItem button>
+                        
                             <ListItemText>
                                 <Link className={navItem} to="/dashboard">Dashboard</Link>
                             </ListItemText>
-                        </ListItem>
-                        <ListItem button>
-                            <ListItemText>
-                                <Link className={navItem} to="/dashboard">Dashboard</Link>
-                            </ListItemText>
-                        </ListItem>
+                        
+                        
                         <Button onClick={logOut} color="inherit">Logout</Button>
                     </Box> : <Typography variant="button" color='white' component="div">
                         <Link className={navItem} to="/login" >Login</Link>

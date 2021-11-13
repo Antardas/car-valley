@@ -26,6 +26,7 @@ import useAuth from '../../../Hooks/useAuth';
 import ManageOrders from '../ManageOrders/ManageOrder';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AdminRoute from '../AdminRoute/AdminRoute';
+import ManageProducts from '../ManageProducts/ManageProducts';
 const drawerWidth = 200;
 
 function Dashboard(props) {
@@ -57,9 +58,20 @@ function Dashboard(props) {
                             }}>Manage Order</Link>
                         </Typography>
                         <Typography variant="button" sx={{ mt: '1rem' }} color='white' component="div">
-                            <Link to={`${url}/makeAdmin`} style={{
+                            <Link
+                                to={`${url}/makeAdmin`}
+                                style={{
                                 color: blue[500]
-                            }}>Make Admin</Link>
+                                }}
+                            >Make Admin</Link>
+                        </Typography>
+                        <Typography variant="button" sx={{ mt: '1rem' }} color='white' component="div">
+                            <Link
+                                to={`${url}/manageProducts`}
+                                style={{
+                                color: blue[500]
+                                }}
+                            >Manage Products</Link>
                         </Typography>
                     </Box> : <Box>                <Typography variant="button" sx={{ mt: '1rem' }} color='white' component="div">
                         <Link to={`${url}/myOrders`} style={{
@@ -75,7 +87,8 @@ function Dashboard(props) {
                             <Link to={`${url}/pay`} style={{
                                 color: blue[500]
                             }}>Pay</Link>
-                        </Typography></Box>
+                            </Typography>
+                        </Box>
                 }
                 <Button variant="contained" onClick={logOut}>
                     Log Out
@@ -167,6 +180,9 @@ function Dashboard(props) {
                     </AdminRoute>
                     <AdminRoute path={`${path}/makeAdmin`}>
                         <MakeAdmin />
+                    </AdminRoute>
+                    <AdminRoute path={`${path}/manageProducts`}>
+                        <ManageProducts/>
                     </AdminRoute>
 
                 </Switch>
