@@ -12,6 +12,10 @@ Back-end: Node.js Express js
 # server Repo [ Link ](https://github.com/programming-hero-web-course-4/niche-website-server-side-Antardas)
 ## 
 
+## login as a admin 
+ ### email: admin@admin.com
+ ### Password: 123456
+
 Functionalities I've implemented:
 
 - Sign up
